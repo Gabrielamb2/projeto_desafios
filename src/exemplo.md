@@ -1,18 +1,22 @@
 Algoritimo De Needleman-Wunsch
 ======
 
+!!! Aviso
+Este handout é baseado em alguns conceitos de biologia. Para revê-los, volte na introdução da  [APS3](https://ensino.hashi.pro.br/desprog/aps3/index.html).
+!!!
+
 O problema 
 ---------
 
-Assim como na APS3 o algoritmo de needleman-Wunsch tem sua principal aplicação em biologia computacional. Para rever alguns conceitos sobre a parte biológica volte na [APS3](https://ensino.hashi.pro.br/desprog/aps3/index.html).
+O algoritmo de Needleman-Wunsch, proposto por Saul Needleman e Christia Wunsch na decada de 1970, têm o objetivo de alinhar duas sequências, ou seja, comparar duas sequências de forma a observar sua similaridade. 
 
-O algoritmo de Needleman-Wunsch têm o objetivo de alinhar duas sequências. Ou seja: comparar duas sequências de forma a observar sua similaridade. 
-
-Ha duas formas de observar a similaridade:
+Sua principal aplicação provêm do ramo biológico, sendo responsável pelo alinhamento de nucleotídeos. Existem duas formas de fazê-lo, globalmente e localmente:
 
  ![](Capture.PNG)
 
-Como mostrando na esquerda da imagem acima o alinhamento global é responsavel por encontrar similaridade ao longo de toda sua extensão. Já o local é feita através de pequenas regiões. Como exemplificado na imagem acima. 
+Como era de se esperar, o alinhamento global é responsavel por encontrar similaridade ao longo de toda sua extensão, já o local é feito através de pequenas regiões.
+
+O algoritimo é implementado segundo um conceito conhecido como [algoritimo guloso](https://pt.wikipedia.org/wiki/Algoritmo_guloso) (kk), ou seja, escolhe as alternativas mais promissoras, nesse caso, o melhor alinhamento de sequências possível!
 
 A formulação
 ---------
