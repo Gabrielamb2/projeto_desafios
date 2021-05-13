@@ -18,8 +18,44 @@ Como é possível observar na imagem anterior, o alinhamento global é responsá
 
 O Neefleman-Wunsch utiliza o alinhamento global, e é  implementado segundo um conceito conhecido como [algoritimo guloso](https://pt.wikipedia.org/wiki/Algoritmo_guloso) (kk), ou seja, escolhe as alternativas mais promissoras, nesse caso, o melhor alinhamento de sequências possível!
 
-A formulação
+Problema do Turista em Manhattan
 ---------
+Antes de apresentarmos o funcionamento do algoritmo de Needleman-Wunsch, iremos introduzir o [Problema do Turista de Manhattan](https://homepages.dcc.ufmg.br/~raquelcm/onlinebioinfo/index.php?alias=algoritmo_needleman_wunsch).
+Imagine que você está na cidade de Manhattan, e como um turista raiz, você quer aproveitar o máximo de pontos turísticos possíveis da cidade. Você poderá escolher diversos caminhos diferentes partindo de seu hotel (fonte) e chegando até seu destino (sumidouro).
+
+A imagem abaixo é um esquema da cidade, onde cada uma das setas representa o número de pontos turísticos da rua.
+
+ ![](cidade_manhattan.png)
+
+Podemos preencher a primeira linha e primeiro coluna para começarmos, dessa forma temos algo assim:
+
+ ![](cidade_manhattan_1.png)
+
+ ??? Checkpoint 1
+ Pergunta rápida, qual a melhor opção para acumular a maior quantidade de pontos no segundo nó da segunda coluna?
+
+::: Gabarito
+Nessa caso a melhor opção seria vir pela rua da esquerda, acumulando 4 pontos ao invés de 3.
+
+ ![](cidade_manhattan_fake.png)
+:::
+ ???
+
+ ??? Checkpoint 2
+
+ Agora é com você! Tente preencher a segunda linha definindo qual a melhor direção a se seguir para que tenha-se o maior valor em cada nó
+
+::: Gabarito
+Com esse nó resolvido, podemos passar para o nó da direita. Seguindo o mesmo raciocínio, a melhor opção seria vir pela rua de cima, acumulando 7 pontos ao invés de 6.
+
+Com esse procedimento, obtemos a seguinte resolução:
+
+ ![](cidade_manhattan_2.png)
+:::
+
+???
+
+
 
 O algoritmo
 ---------
