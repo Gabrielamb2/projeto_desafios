@@ -4,6 +4,16 @@ Algoritimo De Needleman-Wunsch
 O problema 
 ---------
 
+Assim como na APS3 o algoritmo de needleman-Wunsch tem sua principal aplicação em biologia computacional. Para rever alguns conceitos sobre a parte biológica volte na [APS3](https://ensino.hashi.pro.br/desprog/aps3/index.html).
+
+O algoritmo de Needleman-Wunsch têm o objetivo de alinhar duas sequências. Ou seja: comparar duas sequências de forma a observar sua similaridade. 
+
+Ha duas formas de observar a similaridade:
+
+ ![](Capture.PNG)
+
+Como mostrando na esquerda da imagem acima o alinhamento global é responsavel por encontrar similaridade ao longo de toda sua extensão. Já o local é feita através de pequenas regiões. Como exemplificado na imagem acima. 
+
 A formulação
 ---------
 
