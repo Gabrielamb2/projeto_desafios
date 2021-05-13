@@ -1,7 +1,13 @@
-Título
+Algoritimo De Needleman-Wunsch
 ======
 
-Subtítulo
+O problema 
+---------
+
+A formulação
+---------
+
+O algoritmo
 ---------
 
 Para criar um parágrafo, basta escrever um texto contínuo, sem pular linhas.
