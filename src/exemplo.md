@@ -14,9 +14,9 @@ Sua principal aplicação provêm do ramo biológico, sendo responsável pelo al
 
  ![](Capture.PNG)
 
-Como era de se esperar, o alinhamento global é responsavel por encontrar similaridade ao longo de toda sua extensão, já o local é feito através de pequenas regiões.
+Como é possível observar na imagem anterior, o alinhamento global é responsável por encontrar similaridade ao longo de toda sua extensão, além de manter as regiões onde o alinhamento não é possível através da inserção de gaps, ou seja, as entradas não precisam ter o mesmo tamanho, mas as saídas sim. Já o alinhamento local é feito através de pequenas regiões, desprezando áreas onde não é possível alinhar, e portanto, não preservando o tamanho original das sequências.
 
-O algoritimo é implementado segundo um conceito conhecido como [algoritimo guloso](https://pt.wikipedia.org/wiki/Algoritmo_guloso) (kk), ou seja, escolhe as alternativas mais promissoras, nesse caso, o melhor alinhamento de sequências possível!
+O Neefleman-Wunsch utiliza o alinhamento global, e é  implementado segundo um conceito conhecido como [algoritimo guloso](https://pt.wikipedia.org/wiki/Algoritmo_guloso) (kk), ou seja, escolhe as alternativas mais promissoras, nesse caso, o melhor alinhamento de sequências possível!
 
 A formulação
 ---------
