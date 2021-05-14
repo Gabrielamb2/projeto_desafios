@@ -56,80 +56,122 @@ Com esse procedimento, obtemos a seguinte resolução:
 
 ???
 
+ ??? Checkpoint 3
+
+ Agora preencha todos os nós.
+
+::: Gabarito
+Seguindo o mesmo raciocínio,obtemos a seguinte resolução:
+
+ ![](cidade_manhattan_3.png)
+
+ Desta forma obtemos o caminho a seguir: 
+
+![](cidade_manhattan_4.png)
+:::
+
+???
+
 
 
 O algoritmo
 ---------
 
-Para criar um parágrafo, basta escrever um texto contínuo, sem pular linhas.
+1. Inicialização da Matriz 
 
-Você também pode criar
+A matriz é construida com uma sequência colocada na primeira coluna e a outra na primeira linha da matriz, como mostrado na imagem abaixo: 
 
-1. listas;
+Para preencher a matriz a primeira linha e a primeira coluna da matriz é considerado um gap(vai ser explicado no próximo item), obtendo o seguinte resultado: 
 
-2. ordenadas,
+![](matriz-1.PNG)
 
-assim como
 
-* listas;
+2. Preencher a Matriz Com a pontuação máxima
 
-* não-ordenadas
+Para determina a similaridade entre as sequências é preciso encontrar um forma de mensura-la. E é possivel mensura-las de  varias formas. Nesse handout vamos usar o sistema de pontos: 
 
-e imagens. Lembre que todas as imagens devem estar em uma subpasta *img*.
+| GAP      | Missmatch| Match|
+|----------|----------|------|
+| -2       | -1       |   1  |
 
-![](logo.png)
+Esses sistema de pontos é utilizado para preencher uma matriz e definir qual é o melhor alinhamento. O GAP é utilizado para inserir lacunas nas sequências para permitir que um algoritmo de alinhamento corresponda a mais termos do que um alinhamento sem lacunas pode. Porem, minimizar as lacunas eh um alinhamneto é importante para crir um alinhamento util, desta forma o GAP possui uma penalidade maio que o Missmatch. O Missmatch corresponde aos que estao desalinhados e o match aos que estão alinhados. 
 
-Para tabelas, usa-se a [notação do
-MultiMarkdown](https://fletcher.github.io/MultiMarkdown-6/syntax/tables.html),
-que é muito flexível. Vale a pena abrir esse link para saber todas as
-possibilidades.
+Vamos tentar preencher o nó na segunda coluna e segunda linha. Se viermos pela esquerda havera um saldo de -4 (-2+(-4)), porque será considerado um gap, assim como se vier por cima. Isso é considerado um GAP, pois se fizermos um GAP na vertical quer dizer que estamos verificando se aquela letra consegue se alinhar com alguma linha, sendo necessario fazer um gap na sequencia da vertical. Não se preoucupe, você vai entender melhor fazendo.
 
-| coluna a | coluna b |
-|----------|----------|
-| 1        | 2        |
+Então deduzimos que vindo por cima e pela esquerda temos -4. Já se vier pela diagonal havera um saldo de -1 (0 +(-1)), tendo em vista que A e T são diferentes. Desta forma temos: 
 
-Ao longo de um texto, você pode usar *itálico*, **negrito**, {red}(vermelho) e
-[[tecla]]. Também pode usar uma equação LaTeX: $f(n) \leq g(n)$. Se for muito
-grande, você pode isolá-la em um parágrafo.
+$$-1 > -4 = -4$$
 
-$$\lim_{n \rightarrow \infty} \frac{f(n)}{g(n)} \leq 1$$
+Então o valor do nó é -1.
 
-Para inserir uma animação, use `md ;` seguido do nome de uma pasta onde as
-imagens estão. Essa pasta também deve estar em *img*.
-
-;bubble
-
-Você também pode inserir código, inclusive especificando a linguagem.
-
-``` py
-def f():
-    print('hello world')
-```
-
-``` c
-void f() {
-    printf("hello world\n");
-}
-```
-
-Se não especificar nenhuma, o código fica com colorização de terminal.
-
-```
-hello world
-```
-
+IMAGEM
 
 !!! Aviso
-Este é um exemplo de aviso, entre `md !!!`.
+Lembrese que são considerados para preencher s[l,c] devemos considerar:
+$$max((s[l-1,c]+gap),(s[l,c-1]+gap),(s[l-1,c-1] + (match|missmatch)))$$
 !!!
 
+??? Checkpoint 4
 
-??? Exercício
-
-Este é um exemplo de exercício, entre `md ???`.
+ Agora preencha os demais espaços.
 
 ::: Gabarito
-Este é um exemplo de gabarito, entre `md :::`.
+Seguindo o mesmo raciocínio,obtemos a seguinte resolução:
+
+ ![](matriz_resposta.PNG)
+
+???
+
+
+3. Traceback
+
+O traceback é o processo que utilizamos para definir o melhor alinhamento. Ou seja, qual é o melhor caminho da fonte até o sumidouro, como no turista de manhattan mostrando ateriormente. 
+
+
+Complexidade
+---------
+
+Agora que temos uma noção de como o algoritmo funciona e qual o problema que ele resolve, podemos discutir um pouco sobre sua complexidade.
+Sabemos que para determinar a complexidade do algoritmo, precisamos primeiro identificar se ele possui loops.
+
+??? Checkpoint X
+
+ Mesmo sem conhecer o código do Needleman-Wunsch, tente pensar intuitivamente se ele teria loops. Se sim, quantos?
+ ::: Gabarito
+
+Como precisamos preencher uma matriz, espera-se que o código tenha dois loops, um para percorrer as linhas e outro para percorrer as colunas.
+
 :::
 
 ???
+
+??? Checkpoint X
+
+ Determine a complexidade do algoritmo.
+
+::: Gabarito
+
+Como dito no checkpoint anterior, esperamos que o script tenha dois loops, como o pseudocódigo a seguir:
+
+``` c
+void needleman(char seq1[], char seq2[], int n, int m) {
+    int matriz[n][m]; //inicializa a matriz
+      for(int l = 0; i < n; i++){
+        for(int c = 0; l < m; l++){
+            //preenche a matriz ...
+        }
+    }
+}
+```
+Sendo que n e m são os respectivos tamanhos das sequências 1 e 2. Podemos afirmar que a complexidade do algoritmo é O(nm).
+:::
+
+???
+
+
+
+
+
+
+
+
