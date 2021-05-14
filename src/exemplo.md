@@ -134,7 +134,7 @@ Complexidade
 Agora que temos uma noção de como o algoritmo funciona e qual o problema que ele resolve, podemos discutir um pouco sobre sua complexidade.
 Sabemos que para determinar a complexidade do algoritmo, precisamos primeiro identificar se ele possui loops.
 
-??? Checkpoint X
+??? Checkpoint 5
 
  Mesmo sem conhecer o código do Needleman-Wunsch, tente pensar intuitivamente se ele teria loops. Se sim, quantos?
  ::: Gabarito
@@ -145,7 +145,7 @@ Como precisamos preencher uma matriz, espera-se que o código tenha dois loops, 
 
 ???
 
-??? Checkpoint X
+??? Checkpoint 6
 
  Determine a complexidade do algoritmo.
 
