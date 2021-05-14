@@ -16,7 +16,7 @@ Sua principal aplicação provêm do ramo biológico, sendo responsável pelo al
 
 Como é possível observar na imagem anterior, o alinhamento global é responsável por encontrar similaridade ao longo de toda sua extensão, além de manter as regiões onde o alinhamento não é possível através da inserção de gaps, ou seja, as entradas não precisam ter o mesmo tamanho, mas as saídas sim. Já o alinhamento local é feito através de pequenas regiões, desprezando áreas onde não é possível alinhar, e portanto, não preservando o tamanho original das sequências.
 
-O Neefleman-Wunsch utiliza o alinhamento global, e é  implementado segundo um conceito conhecido como [algoritimo guloso](https://pt.wikipedia.org/wiki/Algoritmo_guloso) (kk), ou seja, escolhe as alternativas mais promissoras, nesse caso, o melhor alinhamento de sequências possível!
+O Neefleman-Wunsch utiliza o alinhamento global, e é  implementado segundo um conceito conhecido como [algoritimo guloso](https://pt.wikipedia.org/wiki/Algoritmo_guloso), ou seja, escolhe as alternativas mais promissoras, nesse caso, o melhor alinhamento de sequências possível!
 
 Problema do Turista em Manhattan
 ---------
@@ -47,7 +47,7 @@ Nessa caso a melhor opção seria vir pela rua da esquerda, acumulando 4 (1 + 3)
  Preencha a segunda linha definindo qual a melhor direção a se seguir para que tenha-se o maior valor em cada nó
 
 ::: Gabarito
-Seguindo o mesmo raciocínio, para o terceito nó da segnda coluna a melhor opção seria vir pela rua de cima, acumulando 7 (3 + 2 + 2) pontos ao invés de 6 (1 + 3 + 2).
+Seguindo o mesmo raciocínio, para o terceito nó da segunda coluna a melhor opção seria vir pela rua de cima, acumulando 7 (3 + 2 + 2) pontos ao invés de 6 (1 + 3 + 2).
 
 Com esse procedimento, obtemos a seguinte resolução:
 
@@ -56,7 +56,7 @@ Com esse procedimento, obtemos a seguinte resolução:
 
 ???
 
- ??? Checkpoint 3
+??? Checkpoint 3
 
  Agora preencha todos os nós.
 
@@ -71,92 +71,109 @@ Seguindo o mesmo raciocínio,obtemos a seguinte resolução:
 
 ???
 
-
-
 O algoritmo
 ---------
+Agora sim podemos voltar ao problema do algoritmo de Needleman-Wunsch e resolvê-lo. A ideia é essecialmente a mesma: precisamos preencher uma matriz saindo da fonte e chegando ao sumidouro, de forma a acumular a maior pontuação. 
+
+Err... nada é tão simples, temos um problema, como vamos saber quais valores acumular a cada decisão? Bom, para isso vamos usar um sistema de pontuação:
+
+|    Gap   | Missmatch | Match |
+|----------|-----------|-------|
+|    -2    |     -1    |   1   |
+
+Vamos utilizá-lo para definir qual é o melhor alinhamento. São três as possibilidades:
+
+* Gap: utilizado para inserir lacunas nas sequências, de forma a estendê-las criando espaços vazios. Minimizar as lacunas é importante para criar um alinhamento útil, desta forma o Gap possui uma penalidade maior. ([penalidade de lacuna](https://pt.wikipedia.org/wiki/Penalidade_para_lacunas)). Gaps são contados quando não andamos na diagonal, ou seja, não damos passos em direção ao sumidouro, mas sim estamos "estendendo" o caminho... capiche?
+
+* Missmatch: corresponde aos nucleotídeos que estão desalinhados. Possui pontuação negativa porque queremos alinhar a sequência e não deslinhá-la. É contado especialmente quando damos passos na diagnonal, mas a letras (nucleotídeos) não são iguais.
+
+
+* Match: correspode aos nucleotídeos que estão alinhados. É contado quando damos passos na diagonal e as letras são iguais.
+
+O preenchimento da matriz será dividido em três partes:
 
 1. Inicialização da Matriz 
 
-A matriz é construida com uma sequência colocada na primeira coluna e a outra na primeira linha da matriz, como mostrado na imagem abaixo: 
+A matriz é inicializada com uma sequência colocada na primeira coluna e a outra na primeira linha. Além disso sabemos que na fonte (ponto de partida) temos 0 pontos acumulados, como mostra a imagem abaixo: 
 
-Para preencher a matriz a primeira linha e a primeira coluna da matriz é considerado um gap(vai ser explicado no próximo item), obtendo o seguinte resultado: 
+![](matriz_initial.PNG)
 
-![](matriz-1.PNG)
+??? Checkpoint 4
+Como fizemos anteriormente, precisamos preencher a primeira linha/coluna da matriz. Nesse caso, qual(quais) das três opções (gap, match, missmatch) você usaria?
 
+::: Gabarito
+Nesse caso, estamos andando somente para os lados, portanto usaríamos somente gaps.
+:::
+???
+ 
+ ??? Checkpoint 5
+
+ Preencha a primeira linha/coluna da matriz assim como foi feito no problema do turista de Manhattan.
+
+::: Gabarito
+Como estamos usando apenas gaps, o resultado da matriz inicializada seria:
+
+![](matriz-1.png)
+:::
+
+???
 
 2. Preencher a Matriz Com a pontuação máxima
 
-Para determina a similaridade entre as sequências é preciso encontrar um forma de mensura-la. E é possivel mensura-las de  varias formas. Nesse handout vamos usar o sistema de pontos: 
+Agora precisamos preencher o resto da matriz, de forma a acumular a maior pontuação. 
 
-| GAP      | Missmatch| Match|
-|----------|----------|------|
-| -2       | -1       |   1  |
-
-Esses sistema de pontos é utilizado para preencher uma matriz e definir qual é o melhor alinhamento. O GAP é utilizado para inserir lacunas nas sequências para permitir que um algoritmo de alinhamento corresponda a mais termos do que um alinhamento sem lacunas pode. Porem, minimizar as lacunas eh um alinhamneto é importante para crir um alinhamento util, desta forma o GAP possui uma penalidade maio que o Missmatch. O Missmatch corresponde aos que estao desalinhados e o match aos que estão alinhados. 
-
-Vamos tentar preencher o nó na segunda coluna e segunda linha. Se viermos pela esquerda havera um saldo de -4 (-2+(-4)), porque será considerado um gap, assim como se vier por cima. Isso é considerado um GAP, pois se fizermos um GAP na vertical quer dizer que estamos verificando se aquela letra consegue se alinhar com alguma linha, sendo necessario fazer um gap na sequencia da vertical. Não se preoucupe, você vai entender melhor fazendo.
-
-Então deduzimos que vindo por cima e pela esquerda temos -4. Já se vier pela diagonal havera um saldo de -1 (0 +(-1)), tendo em vista que A e T são diferentes. Desta forma temos: 
-
-$$-1 > -4 = -4$$
-
-Então o valor do nó é -1.
+Vamos ao exemplo do segundo nó da segunda coluna: chegar no nó por cima ou pelo lado signfica inserir um gap, ou seja, acumularíamos -4 pontos (-2 - 2), porém ao vir pela diagonal, como A != T, significa um missmatch, ou seja, acumularíamos -1 ponto (0 - 1). Portanto, o valor do nó é -1, pois -1 > -4.
 
 ![](matriz-2.PNG)
 
-!!! Aviso
-Lembrese que são considerados para preencher s[l,c] devemos considerar:
-$$max((s[l-1,c]+gap),(s[l,c-1]+gap),(s[l-1,c-1] + (match|missmatch)))$$
-!!!
+??? Checkpoint 6
 
-??? Checkpoint 4
-
- Agora preencha os demais espaços.
+Seguindo a mesma lógica trabalhada anteriormente, preencha o restante da linha.
 
 ::: Gabarito
-Seguindo o mesmo raciocínio,obtemos a seguinte resolução:
+ ![](matriz-3.PNG)
+ 
+ Sendo m a matriz, temos:
+ * m[2][2] = missmatch;
+ * m[3][2] = missmatch;
+ * m[4][2] = gap;
+ * m[5][2] = gap
+???
 
- ![](matriz_resposta.PNG)
+??? Checkpoint 7
+ Termine de preencher a matriz.
 
+::: Gabarito
+ ![](matriz-4.PNG)
 ???
 
 
 3. Traceback
 
-O traceback é o processo que utilizamos para definir o melhor alinhamento. Ou seja, qual é o melhor caminho da fonte até o sumidouro, como no turista de manhattan mostrando ateriormente. Ou seja, é igual os labirintos que a gente fazia quando era pequeno, só que agora com umas regras:
+Por fim, precisamos definir o melhor alinhamento, ou seja, qual é o melhor caminho da fonte até o sumidouro, da mesma forma que fizemos para o problema do turista de Manhattan. 
 
-!!! Regra
-Nucleotídeos iguais: andar na diagonal
+As regras são as seguintes:
 
-Nucleotídeos diferentes: max(s[l,c-1],s[l-1,c])
-!!!
+* Andar na diagonal signifca manter a posição atual
+dos nucleotídeos, portanto fazemos isso quando eles já estão alinhados.
 
-??? Checkpoint 5
-Vamos brincar de labirinto, encontre o caminho entre s[0,0] e s[4,4].
-Dica: faça de trás para frente 
+* Caso não estejam alinhados, precisamos procurar a melhor opção entre os nós que sobraram. Note que andar para os lados, signfica estender a sequência das colunas, já andar para cima/baixo significa estender a sequência das linhas.
+
+??? Checkpoint 8
+Bora brincar de labirinto? Comece de trás ppara frente e ncontre o caminho do sumidouro para a fonte, desenhe setas apontando para cada direção escolhida.
  ::: Gabarito
-
- ![](matriz_resposta2.PNG)
-
+ ![](matriz-5.PNG)
 :::
 
 ???
 
-Agora chegou a parte de obter as sequencias alinhadas. Todas as vezes que você foi na diagonal os nucleotideos estão alinhados, quando você foi pra esquerda haverá um gap na sequendia da vertical e quando voce for para cima haverá um GAP na sequencia da horizontal.
-??? Checkpoint 6
-Obtendo algo, assim:
+??? Checkpoint 9
+Usando as regras citadas anteriormente, e o caminho escolhido no checkpoint anterior, determine o alinhamento ótimo das sequências.
  ::: Gabarito
 
 ;alinhamento
-
-OBS: cada passo indica uma seta, de trás para frente
-
 :::
-
 ???
-
-
 
 Complexidade
 ---------
@@ -164,9 +181,9 @@ Complexidade
 Agora que temos uma noção de como o algoritmo funciona e qual o problema que ele resolve, podemos discutir um pouco sobre sua complexidade.
 Sabemos que para determinar a complexidade do algoritmo, precisamos primeiro identificar se ele possui loops.
 
-??? Checkpoint 7
+??? Checkpoint 10
 
- Mesmo sem conhecer o código do Needleman-Wunsch, tente pensar intuitivamente se ele teria loops. Se sim, quantos?
+ Mesmo sem conhecer o código do Needleman-Wunsch, tente pensar intuitivamente: ele teria loops? Se sim, quantos?
  ::: Gabarito
 
 Como precisamos preencher uma matriz, espera-se que o código tenha dois loops, um para percorrer as linhas e outro para percorrer as colunas.
@@ -175,7 +192,7 @@ Como precisamos preencher uma matriz, espera-se que o código tenha dois loops, 
 
 ???
 
-??? Checkpoint 8
+??? Checkpoint 11
 
  Determine a complexidade do algoritmo.
 
@@ -195,44 +212,7 @@ void needleman(char seq1[], char seq2[], int n, int m) {
 ```
 Sendo que n e m são os respectivos tamanhos das sequências 1 e 2. Podemos afirmar que a complexidade do algoritmo é O(nm).
 :::
-
 ???
-
-Extra
----------
-
-Você tera um caso pra solucionar, e ai? Aceita o desafio?
-
-![](detetive.png)
-
-Vamos descobrir qual a identidade do homem que desfigurava e extirpava órgãos de suas vítimas, conhecido como  "Jack, o Estripador".
-
-Temos 2 suspeitos:
-
-1. Aaron Kosminski, um barbeiro de origem polonesa que tinha 23 anos na época dos crimes.   
-2. Um açogueiro sueco
-
-Para nos ajudar na analise, possuimos o dna dos dois suspeitos e do culpado(encontrado na cena do crime).
-
-Aaron Kosminski:  CTAGTTCA
-Açogueiro sueco:  GATTTA
-Culpado: GTCGACGCA
-
-??? Desafio
-
- E ai, consegue descobrir qual possui o DNA mais parecido com o culpado?
- ::: Gabarito
-
-Aaron Kosminski possui um saldo de -2:
-
-![](suspeito_1.PNG)
-
-Enquanto o açogueiro possui um saldo de -6:
-
-![](suspeito_2.PNG)
-:::
-
-
 
 
 
