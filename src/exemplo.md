@@ -62,8 +62,7 @@ Com esse procedimento, obtemos a seguinte resolução:
 
 ::: Gabarito
 Seguindo o mesmo raciocínio,obtemos a seguinte resolução:
-
- ![](cidade_manhattan_3.png)
+![](cidade_manhattan_3.png)
 
  Desta forma obtemos o caminho a seguir: 
 
@@ -104,7 +103,7 @@ $$-1 > -4 = -4$$
 
 Então o valor do nó é -1.
 
-IMAGEM
+![](matriz-2.PNG)
 
 !!! Aviso
 Lembrese que são considerados para preencher s[l,c] devemos considerar:
@@ -133,23 +132,25 @@ Nucleotídeos iguais: andar na diagonal
 Nucleotídeos diferentes: max(s[l,c-1],s[l-1,c])
 !!!
 
-??? Checkpoint X
+??? Checkpoint 5
 Vamos brincar de labirinto, encontre o caminho entre s[0,0] e s[4,4].
 Dica: faça de trás para frente 
  ::: Gabarito
 
-IMAGEM
+ ![](matriz_resposta2.PNG)
 
 :::
 
 ???
 
 Agora chegou a parte de obter as sequencias alinhadas. Todas as vezes que você foi na diagonal os nucleotideos estão alinhados, quando você foi pra esquerda haverá um gap na sequendia da vertical e quando voce for para cima haverá um GAP na sequencia da horizontal.
-??? Checkpoint X
+??? Checkpoint 6
 Obtendo algo, assim:
  ::: Gabarito
 
-IMAGEM
+;alinhamento
+
+OBS: cada passo indica uma seta, de trás para frente
 
 :::
 
@@ -163,7 +164,7 @@ Complexidade
 Agora que temos uma noção de como o algoritmo funciona e qual o problema que ele resolve, podemos discutir um pouco sobre sua complexidade.
 Sabemos que para determinar a complexidade do algoritmo, precisamos primeiro identificar se ele possui loops.
 
-??? Checkpoint 5
+??? Checkpoint 7
 
  Mesmo sem conhecer o código do Needleman-Wunsch, tente pensar intuitivamente se ele teria loops. Se sim, quantos?
  ::: Gabarito
@@ -174,7 +175,7 @@ Como precisamos preencher uma matriz, espera-se que o código tenha dois loops, 
 
 ???
 
-??? Checkpoint 6
+??? Checkpoint 8
 
  Determine a complexidade do algoritmo.
 
@@ -197,8 +198,39 @@ Sendo que n e m são os respectivos tamanhos das sequências 1 e 2. Podemos afir
 
 ???
 
+Extra
+---------
 
+Você tera um caso pra solucionar, e ai? Aceita o desafio?
 
+![](detetive.png)
+
+Vamos descobrir qual a identidade do homem que desfigurava e extirpava órgãos de suas vítimas, conhecido como  "Jack, o Estripador".
+
+Temos 2 suspeitos:
+
+1. Aaron Kosminski, um barbeiro de origem polonesa que tinha 23 anos na época dos crimes.   
+2. Um açogueiro sueco
+
+Para nos ajudar na analise, possuimos o dna dos dois suspeitos e do culpado(encontrado na cena do crime).
+
+Aaron Kosminski:  CTAGTTCA
+Açogueiro sueco:  GATTTA
+Culpado: GTCGACGCA
+
+??? Desafio
+
+ E ai, consegue descobrir qual possui o DNA mais parecido com o culpado?
+ ::: Gabarito
+
+Aaron Kosminski possui um saldo de -2:
+
+![](suspeito_1.PNG)
+
+Enquanto o açogueiro possui um saldo de -6:
+
+![](suspeito_2.PNG)
+:::
 
 
 
