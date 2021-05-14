@@ -125,7 +125,36 @@ Seguindo o mesmo raciocínio,obtemos a seguinte resolução:
 
 3. Traceback
 
-O traceback é o processo que utilizamos para definir o melhor alinhamento. Ou seja, qual é o melhor caminho da fonte até o sumidouro, como no turista de manhattan mostrando ateriormente. 
+O traceback é o processo que utilizamos para definir o melhor alinhamento. Ou seja, qual é o melhor caminho da fonte até o sumidouro, como no turista de manhattan mostrando ateriormente. Ou seja, é igual os labirintos que a gente fazia quando era pequeno, só que agora com umas regras:
+
+!!! Regra
+Nucleotídeos iguais: andar na diagonal
+
+Nucleotídeos diferentes: max(s[l,c-1],s[l-1,c])
+!!!
+
+??? Checkpoint X
+Vamos brincar de labirinto, encontre o caminho entre s[0,0] e s[4,4].
+Dica: faça de trás para frente 
+ ::: Gabarito
+
+IMAGEM
+
+:::
+
+???
+
+Agora chegou a parte de obter as sequencias alinhadas. Todas as vezes que você foi na diagonal os nucleotideos estão alinhados, quando você foi pra esquerda haverá um gap na sequendia da vertical e quando voce for para cima haverá um GAP na sequencia da horizontal.
+??? Checkpoint X
+Obtendo algo, assim:
+ ::: Gabarito
+
+IMAGEM
+
+:::
+
+???
+
 
 
 Complexidade
