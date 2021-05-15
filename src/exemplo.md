@@ -150,7 +150,7 @@ Seguindo a mesma lógica trabalhada anteriormente, preencha o restante da linha.
 
 3. Traceback
 
-Por fim, precisamos definir o melhor alinhamento, ou seja, qual é o melhor caminho da fonte até o sumidouro, da mesma forma que fizemos para o problema do turista de Manhattan. 
+Por fim, precisamos definir o melhor alinhamento, ou seja, qual é o melhor caminho do sumidouro até a fonte, da mesma forma que fizemos para o problema do turista de Manhattan. 
 
 As regras são as seguintes:
 
@@ -160,7 +160,7 @@ dos nucleotídeos, portanto fazemos isso quando eles já estão alinhados.
 * Caso não estejam alinhados, precisamos procurar a melhor opção entre os nós que sobraram. Note que andar para os lados, signfica estender a sequência das colunas, já andar para cima/baixo significa estender a sequência das linhas.
 
 ??? Checkpoint 8
-Bora brincar de labirinto? Comece de trás ppara frente e ncontre o caminho do sumidouro para a fonte, desenhe setas apontando para cada direção escolhida.
+Vamos brincar de labirinto? Comece de trás para frente e encontre o melhor caminho do sumidouro para a fonte. Desenhe setas apontando para cada direção escolhida.
  ::: Gabarito
  ![](matriz-5.PNG)
 :::
@@ -168,7 +168,7 @@ Bora brincar de labirinto? Comece de trás ppara frente e ncontre o caminho do s
 ???
 
 ??? Checkpoint 9
-Usando as regras citadas anteriormente, e o caminho escolhido no checkpoint anterior, determine o alinhamento ótimo das sequências.
+Usando as regras citadas anteriormente e o caminho escolhido no checkpoint anterior, determine o alinhamento ótimo das sequências.
  ::: Gabarito
 
 ;alinhamento
