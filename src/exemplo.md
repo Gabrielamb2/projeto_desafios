@@ -18,59 +18,6 @@ Como é possível observar na imagem anterior, o alinhamento global é responsá
 
 O Neefleman-Wunsch utiliza o alinhamento global, e é  implementado segundo um conceito conhecido como [algoritimo guloso](https://pt.wikipedia.org/wiki/Algoritmo_guloso), ou seja, escolhe as alternativas mais promissoras, nesse caso, o melhor alinhamento de sequências possível!
 
-Problema do Turista em Manhattan
----------
-Antes de apresentarmos o funcionamento do algoritmo de Needleman-Wunsch, iremos introduzir o [Problema do Turista de Manhattan](https://homepages.dcc.ufmg.br/~raquelcm/onlinebioinfo/index.php?alias=algoritmo_needleman_wunsch), o qual irá nos ajudar a entender o conceito.
-
-Imagine que você está na cidade de Manhattan, e como um turista raiz, você quer aproveitar o máximo de pontos turísticos possíveis da cidade. Você poderá escolher diversos caminhos diferentes partindo de seu hotel (fonte) e chegando até seu destino (sumidouro).
-
-A imagem abaixo é um esquema da cidade, onde cada uma das setas representa o número de pontos turísticos da rua.
-
- ![](cidade_manhattan.png)
-
-Para começarmos, vamos preencher a primeira linha e primeira coluna, acumulando os pontos turísticos visitados em cada nó, dessa forma temos algo assim:
-
- ![](cidade_manhattan_1.png)
-
- ??? Checkpoint 1
- Para aquecer, qual a melhor caminho para chegar no segundo nó da segunda coluna, de forma a acumular o maior número de pontos?
-
-::: Gabarito
-Nessa caso a melhor opção seria vir pela rua da esquerda, acumulando 4 (1 + 3) pontos ao invés de 3 (3 + 0).
-
- ![](cidade_manhattan_fake.png)
-:::
- ???
-
- ??? Checkpoint 2
-
- Preencha a segunda linha definindo qual a melhor direção a se seguir para que tenha-se o maior valor em cada nó
-
-::: Gabarito
-Seguindo o mesmo raciocínio, para o terceito nó da segunda coluna a melhor opção seria vir pela rua de cima, acumulando 7 (3 + 2 + 2) pontos ao invés de 6 (1 + 3 + 2).
-
-Com esse procedimento, obtemos a seguinte resolução:
-
- ![](cidade_manhattan_2.png)
-:::
-
-???
-
-??? Checkpoint 3
-
- Agora preencha todos os nós.
-
-::: Gabarito
-Seguindo o mesmo raciocínio,obtemos a seguinte resolução:
-![](cidade_manhattan_3.png)
-
- Desta forma obtemos o caminho a seguir: 
-
-![](cidade_manhattan_4.png)
-:::
-
-???
-
 O algoritmo
 ---------
 Agora sim podemos voltar ao problema do algoritmo de Needleman-Wunsch e resolvê-lo. A ideia é essecialmente a mesma: precisamos preencher uma matriz saindo da fonte e chegando ao sumidouro, de forma a acumular a maior pontuação. 
