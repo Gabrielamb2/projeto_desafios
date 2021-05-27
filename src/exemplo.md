@@ -8,9 +8,21 @@ Este handout é baseado em alguns conceitos de biologia. Para revê-los, volte n
 O problema
 ---------
 
-O algoritmo de Needleman-Wunsch, proposto por Saul Needleman e Christia Wunsch na decada de 1970, têm o objetivo de alinhar duas sequências, ou seja, comparar duas sequências de forma a observar sua similaridade. 
+Neste handout vamos falar sobre o algoritmo de Needleman-Wunsch, proposto por Saul Needleman e Christia Wunsch na decada de 1970. O objetivo principal deste algoritmo é alinhar duas sequências, e por essa razão vamos começar entendendo melhor este conceito.
 
-Sua principal aplicação provêm do ramo biológico, sendo responsável pelo alinhamento de nucleotídeos. Existem duas formas de fazê-lo, globalmente e localmente:
+Imagine que temos duas sequências de chars:
+* s1: A T A
+* s2: T A C
+
+Alinhar essas sequências significa, basicamente, obter duas outras sequências, s3 e s4, de mesmo tamanho, de forma que possuam todos os caracteres originais das sequências s1 e s2, respectivamente. Além disso, os caracteres devem estar na mesma ordem da sequência original, porém não necessariamente juntos. Podemos resumir na seguinte imagem:
+
+![](alinhamento_ex1.PNG)
+
+Note que o ponto chave é a inserção de espaços vazios, os quais vamos chamar de gaps. Inserí-los torna possível modificar parcialmente as sequências originais, de forma a combinar seus caracteres. A cereja do bolo é que esse conceito também funciona para sequências que não são do mesmo tamanho, como nos exemplos logo abaixo:
+
+;alinhamento_exemplos
+
+Agora que entendemos o conceito de alinhamento, podemos voltar ao algoritmo em si. Sua principal aplicação provêm do ramo biológico, sendo responsável pelo alinhamento de nucleotídeos (coincidentemente representados pelas mesmas letras dos exercícios anteriores). Existem duas formas de fazê-lo, globalmente e localmente:
 
  ![](Capture.PNG)
 
