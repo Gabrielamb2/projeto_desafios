@@ -30,6 +30,8 @@ Como é possível observar na imagem anterior, o alinhamento global é responsá
 
 O Neefleman-Wunsch utiliza o alinhamento global, e é  implementado segundo um conceito conhecido como [algoritimo guloso](https://pt.wikipedia.org/wiki/Algoritmo_guloso), ou seja, escolhe as alternativas mais promissoras, nesse caso, o melhor alinhamento de sequências possível!
 
+Vale lembrar que este é considerado um algoritmo "ótimo", ou seja, é o que apresenta a menor complexidade dentre os outros algoritmos conhecidos que poderiam vir a atender a questão proposta. Portanto, o algoritmo de Needleman-Wunsch consegue comparar duas sequências e alinhá-las com o mínimo de recursos necessários.
+
 O algoritmo
 ---------
 Agora sim podemos voltar ao problema do algoritmo de Needleman-Wunsch e resolvê-lo. A ideia é essecialmente a mesma: precisamos preencher uma matriz saindo da fonte e chegando ao sumidouro, de forma a acumular a maior pontuação. 
