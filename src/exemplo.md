@@ -110,7 +110,7 @@ Ou seja, apartir dessa coluna podemos concluir que:
 
 Bom, acho que deu pra ter uma noção, mas vamos fazer agora uma célula um pouco mais dificil :)
 
-
+2. Preenchendo as outras células da matriz:
 
 ??? Checkpoint 5
 Se quisermos determinar o score dessa célula:
