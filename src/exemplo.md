@@ -30,17 +30,17 @@ Como é possível observar na imagem anterior, o alinhamento global é responsá
 
 O Neefleman-Wunsch utiliza o alinhamento global, e é  implementado segundo um conceito conhecido como [algoritimo guloso](https://pt.wikipedia.org/wiki/Algoritmo_guloso), ou seja, escolhe as alternativas mais promissoras, nesse caso, o melhor alinhamento de sequências possível!
 
-O algoritmo
+Score
 ---------
-Agora sim podemos voltar ao problema do algoritmo de Needleman-Wunsch e resolvê-lo. A ideia é essecialmente a mesma: precisamos preencher uma matriz saindo da fonte e chegando ao sumidouro, de forma a acumular a maior pontuação. 
 
-Err... nada é tão simples, temos um problema, como vamos saber quais valores acumular a cada decisão? Bom, para isso vamos usar um sistema de pontuação:
+Para determinr quanto o alinhamento é bom, é utilizado um sistema de pontuação:
+
 
 |    Gap   | Missmatch | Match |
 |----------|-----------|-------|
 |    -2    |     -1    |   1   |
 
-Vamos utilizá-lo para definir qual é o melhor alinhamento. São três as possibilidades:
+São três as possibilidades:
 
 * Gap: utilizado para inserir lacunas nas sequências, de forma a estendê-las criando espaços vazios. Minimizar as lacunas é importante para criar um alinhamento útil, desta forma o Gap possui uma penalidade maior. ([penalidade de lacuna](https://pt.wikipedia.org/wiki/Penalidade_para_lacunas)). Gaps são contados quando não andamos na diagonal, ou seja, não damos passos em direção ao sumidouro, mas sim estamos "estendendo" o caminho... capiche?
 
@@ -49,88 +49,117 @@ Vamos utilizá-lo para definir qual é o melhor alinhamento. São três as possi
 
 * Match: correspode aos nucleotídeos que estão alinhados. É contado quando damos passos na diagonal e as letras são iguais.
 
-O preenchimento da matriz será dividido em três partes:
+
+Algoritmo 
+---------
+
+Conhecendo agora o sistema de pontos, como podemos encontrar o alinhamento com o melhor score possivel? Ou seja, o melhor alinhamento possível?
+
+Para determinar o melhor alinhamento possível é utilizado uma matriz, a qual vamos explicar seu funcionamento nos próximos passos: 
 
 1. Inicialização da Matriz 
 
-A matriz é inicializada com uma sequência colocada na primeira coluna e a outra na primeira linha. Além disso sabemos que na fonte (ponto de partida) temos 0 pontos acumulados, como mostra a imagem abaixo: 
+Para determinarmos o melhor alimento de duas sequências, inicializamos a matris colocando uma sequência na primeira linha e a aoutra na primeira coluna,como mostra a imagem abaixo para as sequências mostradas anteriorment (ATA & TAC): 
 
-![](matriz_initial.PNG)
+![](matriz_inicial.PNG)
+
+O ponto mais importante para você entender como que funciona o preenchimento dessa matriz é que cada célula representa uma versão menor do problema. Um pouco confuso não é? Vamos olhar so para as primeiras duas linhas:
+
+![](matriz_inicial_linha.png)
+
+Como vamos preencher isso? 
+
+Lembrando que cada célula representa uma versão menor do problema e que cada célula é responsável pelo score de um alinhamento, vamos observar a primeira célula vazia:
+
+![](matriz_inicial_linha_celula1.png)
+
+Essa célula é responsável pelo score da letra A com algo vazio, assim a unica forma de alinhar é com um Gap. 
+Agora vamos olhar a próxima célula: 
+
+![](matriz_inicial_linha_celula2.png)
+
+Como vamos alinhar AT com algo vazio, sendo que A esta alinhado com um Gap, T também sera alinhado com um Gap. 
+Agora vamos olhar a próxima célula: 
+
+![](matriz_inicial_linha_celula3.png)
+
+Analogamente como explicado anteriormente, teremos que alinhar ATA com algo vazio, sendo que A e T está alinhado com um Gap, o outro A também será alinhado com um Gap, obtendo assim a primeira linha: 
+
+![](matriz_inicial_linha_completa.png)
+
+Ou seja, apartir dessa linha podemos concluir que:
+1. o score de alinhamento de A com algo vazio é -2,
+2. o score de alinhamento de AT com algo vazio é -4,
+3. o score de alinhamento de ATA com algo vazio é -6,
+
+É possível observar que o alinhamento A (1) é uma versão menor do problema de alinhamento AT(2), e AT(2) é uma versão menor do problema de alinhamento ATA. 
 
 ??? Checkpoint 4
-Como fizemos anteriormente, precisamos preencher a primeira linha/coluna da matriz. Nesse caso, qual(quais) das três opções (gap, match, missmatch) você usaria?
+Como fizemos anteriormente, precisamos preencher agora a primeira coluna da matriz. Agora é com você :)
 
 ::: Gabarito
-Nesse caso, estamos andando somente para os lados, portanto usaríamos somente gaps.
+;Coluna
+
+Ou seja, apartir dessa coluna podemos concluir que:
+1. o score de alinhamento de T com algo vazio é -2,pois é um Gap;
+2. o score de alinhamento de TA com algo vazio é -4,pois tambem é um Gap;
+3. o score de alinhamento de ATC com algo vazio é -6,pois tambem é um Gap.
+
 :::
 ???
- 
- ??? Checkpoint 5
 
- Preencha a primeira linha/coluna da matriz assim como foi feito no problema do turista de Manhattan.
+Bom, acho que deu pra ter uma noção, mas vamos fazer agora uma célula um pouco mais dificil :)
+
+
+
+??? Checkpoint 5
+Se quisermos determinar o score dessa célula:
+
+![](matriz_inteira.png)
+
+O score dessa célula será o resultado do alinhamento de quais sequências?
 
 ::: Gabarito
-Como estamos usando apenas gaps, o resultado da matriz inicializada seria:
 
-![](matriz-1.png)
+Será o alinhamento da sequência A com T. 
+
+![](matriz_inteira1.png)
+
 :::
-
 ???
 
-2. Preencher a Matriz Com a pontuação máxima
+Bom, para determinarmos o valor dessa células temos 3 opções, porém precisamos determinar a que nos trará o melhor alinhamento. Assim, vamos analisar as opções:
 
-Agora precisamos preencher o resto da matriz, de forma a acumular a maior pontuação. 
+1. Vir por cima e fazer um Gap na sequencia da horizontal, assim teriamos um score de -4 
+    * gap
+    * T
 
-Vamos ao exemplo do segundo nó da segunda coluna: chegar no nó por cima ou pelo lado signfica inserir um gap, ou seja, acumularíamos -4 pontos (-2 - 2), porém ao vir pela diagonal, como A != T, significa um missmatch, ou seja, acumularíamos -1 ponto (0 - 1). Portanto, o valor do nó é -1, pois -1 > -4.
+2. Vir pela esquerda e fazer um Gap na sequencia da vertical, assim teriamos um score de -4
+    * A
+    * gap
 
-![](matriz-2.PNG)
+3. Vir pela diagonal e ter um MissMatch, assim teriamos um score de -1
+    * A
+    * T
+
+Desta forma, para termos o maior score possível é utilizar a opção 3:
+
+![](matriz_inteira2.png)
+
+Então podemos concluir que para determinar o score de uma célula precisamos de 3 scores de uma versão menor do problema. Da posição:
+* [l-1][c], 
+* [l][c-1],
+* [l-1][c-1].
 
 ??? Checkpoint 6
+Agora é com você, preencha as outras células da matriz:
 
-Seguindo a mesma lógica trabalhada anteriormente, preencha o restante da linha.
-
-::: Gabarito
- ![](matriz-3.PNG)
- 
- Sendo m a matriz, temos:
- * m[2][2] = missmatch;
- * m[3][2] = missmatch;
- * m[4][2] = gap;
- * m[5][2] = gap
-???
-
-??? Checkpoint 7
- Termine de preencher a matriz.
+![](matriz_inteira3.png)
 
 ::: Gabarito
- ![](matriz-4.PNG)
-???
 
+![](matriz_inteira4.png)
 
-3. Traceback
-
-Por fim, precisamos definir o melhor alinhamento, ou seja, qual é o melhor caminho da fonte até o sumidouro, da mesma forma que fizemos para o problema do turista de Manhattan. 
-
-As regras são as seguintes:
-
-* Andar na diagonal signifca manter a posição atual
-dos nucleotídeos, portanto fazemos isso quando eles já estão alinhados.
-
-* Caso não estejam alinhados, precisamos procurar a melhor opção entre os nós que sobraram. Note que andar para os lados, signfica estender a sequência das colunas, já andar para cima/baixo significa estender a sequência das linhas.
-
-??? Checkpoint 8
-Bora brincar de labirinto? Comece de trás ppara frente e ncontre o caminho do sumidouro para a fonte, desenhe setas apontando para cada direção escolhida.
- ::: Gabarito
- ![](matriz-5.PNG)
-:::
-
-???
-
-??? Checkpoint 9
-Usando as regras citadas anteriormente, e o caminho escolhido no checkpoint anterior, determine o alinhamento ótimo das sequências.
- ::: Gabarito
-
-;alinhamento
 :::
 ???
 
@@ -140,7 +169,7 @@ Complexidade
 Agora que temos uma noção de como o algoritmo funciona e qual o problema que ele resolve, podemos discutir um pouco sobre sua complexidade.
 Sabemos que para determinar a complexidade do algoritmo, precisamos primeiro identificar se ele possui loops.
 
-??? Checkpoint 10
+??? Checkpoint 7
 
  Mesmo sem conhecer o código do Needleman-Wunsch, tente pensar intuitivamente: ele teria loops? Se sim, quantos?
  ::: Gabarito
@@ -151,7 +180,7 @@ Como precisamos preencher uma matriz, espera-se que o código tenha dois loops, 
 
 ???
 
-??? Checkpoint 11
+??? Checkpoint 8
 
  Determine a complexidade do algoritmo.
 
