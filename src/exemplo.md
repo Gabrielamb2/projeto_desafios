@@ -44,10 +44,10 @@ São três as possibilidades:
 
 * Gap: utilizado para inserir lacunas nas sequências, de forma a estendê-las criando espaços vazios. Minimizar as lacunas é importante para criar um alinhamento útil, desta forma o Gap possui uma penalidade maior. ([penalidade de lacuna](https://pt.wikipedia.org/wiki/Penalidade_para_lacunas)).
 
-* Missmatch: corresponde aos nucleotídeos que estão desalinhados. Possui pontuação negativa porque queremos alinhar a sequência e não desalinhá-la. É contado especialmente quando damos passos na diagnonal, mas a letras (nucleotídeos) não são iguais.
+* Missmatch: corresponde aos nucleotídeos que estão desalinhados. Possui pontuação negativa porque queremos alinhar a sequência e não desalinhá-la. 
 
 
-* Match: correspode aos nucleotídeos que estão alinhados. É contado quando damos passos na diagonal e as letras são iguais.
+* Match: correspode aos nucleotídeos que estão alinhados. 
 
 
 Algoritmo 
@@ -65,9 +65,8 @@ Para determinarmos o melhor alinhamento de duas sequências, inicializamos a mat
 
 ![](matriz_inicial.png)
 
-COLOCAR FONTE E SUMIDOURO
 
-O ponto mais importante para você entender como que funciona o preenchimento dessa matriz é que cada célula representa uma versão menor do problema. Um pouco confuso não é? Vamos olhar so para as primeiras duas linhas:
+O ponto mais importante para você entender como que funciona o preenchimento dessa matriz é que cada célula representa uma versão menor do problema. Um pouco confuso não é? mas a ideia é sair da fonte e chegar ao sumidouro.Vamos olhar so para as primeiras duas linhas:
 
 ![](matriz_inicial_linha.png)
 
@@ -109,7 +108,7 @@ Agora é com você :)
 ::: Gabarito
 ;Coluna
 
-ARRUMAR ULTIMA FOTO
+
 
 Ou seja, apartir dessa coluna podemos concluir que todos os nucleotideos foram alinhados com Gaps, obtendo assim:
 1. o score de alinhamento de T com algo vazio é -2,
@@ -174,7 +173,11 @@ Agora é com você, preencha as outras células da matriz:
 
 ![](matriz_inteira4.png)
 
-colocar setas
+As setas vermelhas indicam gap.
+
+As setas laranjas indicam missmatch,é especialmente quando damos passos na diagnonal, mas a letras (nucleotídeos) não são iguais.
+
+E as setas verdes indicam match, é quando damos passos na diagonal e as letras são iguais.
 
 :::
 ???
