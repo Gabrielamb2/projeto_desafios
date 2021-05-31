@@ -175,7 +175,33 @@ void needleman(char seq1[], char seq2[], int n, int m) {
 ```
 Sendo que n e m são os respectivos tamanhos das sequências 1 e 2. Podemos afirmar que a complexidade do algoritmo é O(nm).
 :::
+
 ???
+
+??? Desafio
+
+Como você faria o caminho ao contrário, ou seja, do sumidouro para a fonte? Desenhe setas apontando para cada direção escolhida. 
+
+::: Gabarito
+![](matriz-5.PNG)
+
+Talvez tenha ficado um pouco confuso, não é mesmo? Pois é, vamos explicar. 
+
+Este processo é conhecido como traceback, onde precisamos definir o melhor alinhamento, ou seja, qual é o melhor caminho da fonte até o sumidouro, da mesma forma que fizemos para o problema do turista de Manhattan. 
+
+As regras são as seguintes:
+
+* Andar na diagonal signifca manter a posição atual
+dos nucleotídeos, portanto fazemos isso quando eles já estão alinhados.
+
+* Caso não estejam alinhados, precisamos procurar a melhor opção entre os nós que sobraram. Note que andar para os lados, signfica estender a sequência das colunas, já andar para cima/baixo significa estender a sequência das linhas.
+
+Com as regras acima e o caminho escolhido da imagem, podemos determinar o alinhamento ótimo das sequências:
+
+;alinhamento
+:::
+
+??? 
 
 
 
