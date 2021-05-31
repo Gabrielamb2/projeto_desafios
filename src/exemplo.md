@@ -103,7 +103,8 @@ Como fizemos anteriormente, precisamos preencher agora a primeira coluna da matr
 Ou seja, apartir dessa coluna podemos concluir que:
 1. o score de alinhamento de T com algo vazio é -2,pois é um Gap;
 2. o score de alinhamento de TA com algo vazio é -4,pois tambem é um Gap;
-3. o score de alinhamento de ATC com algo vazio é -6,pois tambem é um Gap.
+3. o score de alinhamento de TAC com algo vazio é -6,pois tambem é um Gap.
+4. o score de alinhamento de TACA com algo vazio é -8,pois tambem é um Gap.
 
 :::
 ???
