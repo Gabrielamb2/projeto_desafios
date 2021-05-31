@@ -59,7 +59,7 @@ Para determinar o melhor alinhamento possível é utilizado uma matriz, a qual v
 
 1. Inicialização da Matriz 
 
-Para determinarmos o melhor alimento de duas sequências, inicializamos a matris colocando uma sequência na primeira linha e a aoutra na primeira coluna,como mostra a imagem abaixo para as sequências mostradas anteriorment (ATA & TAC): 
+Para determinarmos o melhor alimento de duas sequências, inicializamos a matris colocando uma sequência na primeira linha e a aoutra na primeira coluna,como mostra a imagem abaixo para as sequências mostradas anteriorment (ATA & TACA): 
 
 ![](matriz_inicial.png)
 
