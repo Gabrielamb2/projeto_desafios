@@ -44,10 +44,11 @@ São três as possibilidades:
 
 * Gap: utilizado para inserir lacunas nas sequências, de forma a estendê-las criando espaços vazios. Minimizar as lacunas é importante para criar um alinhamento útil, desta forma o Gap possui uma penalidade maior. ([penalidade de lacuna](https://pt.wikipedia.org/wiki/Penalidade_para_lacunas)). Gaps são contados quando não andamos na diagonal, ou seja, não damos passos em direção ao sumidouro, mas sim estamos "estendendo" o caminho... capiche?
 
-* Missmatch: corresponde aos nucleotídeos que estão desalinhados. Possui pontuação negativa porque queremos alinhar a sequência e não deslinhá-la. É contado especialmente quando damos passos na diagnonal, mas a letras (nucleotídeos) não são iguais.
+* Missmatch: corresponde aos nucleotídeos que estão desalinhados. Possui pontuação negativa porque queremos alinhar a sequência e não desalinhá-la. 
 
 
-* Match: correspode aos nucleotídeos que estão alinhados. É contado quando damos passos na diagonal e as letras são iguais.
+
+* Match: correspode aos nucleotídeos que estão alinhados. 
 
 
 Algoritmo 
@@ -63,7 +64,9 @@ Para determinarmos o melhor alimento de duas sequências, inicializamos a matris
 
 ![](matriz_inicial.png)
 
-O ponto mais importante para você entender como que funciona o preenchimento dessa matriz é que cada célula representa uma versão menor do problema. Um pouco confuso não é? Vamos olhar so para as primeiras duas linhas:
+
+O ponto mais importante para você entender como que funciona o preenchimento dessa matriz é que cada célula representa uma versão menor do problema. Um pouco confuso não é? mas a ideia é sair da fonte e chegar ao sumidouro.Vamos olhar so para as primeiras duas linhas:
+
 
 ![](matriz_inicial_linha.png)
 
@@ -100,11 +103,13 @@ Como fizemos anteriormente, precisamos preencher agora a primeira coluna da matr
 ::: Gabarito
 ;Coluna
 
-Ou seja, apartir dessa coluna podemos concluir que:
-1. o score de alinhamento de T com algo vazio é -2,pois é um Gap;
-2. o score de alinhamento de TA com algo vazio é -4,pois tambem é um Gap;
-3. o score de alinhamento de TAC com algo vazio é -6,pois tambem é um Gap.
-4. o score de alinhamento de TACA com algo vazio é -8,pois tambem é um Gap.
+
+Ou seja, apartir dessa coluna podemos concluir que todos os nucleotideos foram alinhados com Gaps, obtendo assim:
+1. o score de alinhamento de T com algo vazio é -2,
+2. o score de alinhamento de TA com algo vazio é -4,
+3. o score de alinhamento de TAC com algo vazio é -6,
+4. o score de alinhamento de TACA com algo vazio é -8.
+
 
 :::
 ???
@@ -160,6 +165,13 @@ Agora é com você, preencha as outras células da matriz:
 ::: Gabarito
 
 ![](matriz_inteira4.png)
+
+As setas vermelhas indicam gap.
+
+As setas laranjas indicam missmatch,é especialmente quando damos passos na diagnonal, mas a letras (nucleotídeos) não são iguais.
+
+E as setas verdes indicam match, é quando damos passos na diagonal e as letras são iguais.
+
 
 :::
 ???
