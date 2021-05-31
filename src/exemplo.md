@@ -16,7 +16,7 @@ Imagine que temos duas sequências de chars:
 
 Alinhar essas sequências significa, basicamente, obter duas outras sequências, s3 e s4, de mesmo tamanho, de forma que possuam todos os caracteres originais das sequências s1 e s2, respectivamente. Além disso, os caracteres devem estar na mesma ordem da sequência original, porém não necessariamente juntos. Podemos resumir na seguinte imagem:
 
-![](alinhamento_ex1.PNG)
+![](alinhamento_ex1.png)
 
 Note que o ponto chave é a inserção de espaços vazios, os quais vamos chamar de gaps. Inserí-los torna possível modificar parcialmente as sequências originais, de forma a combinar seus caracteres. A cereja do bolo é que esse conceito também funciona para sequências que não são do mesmo tamanho, como nos exemplos logo abaixo:
 
@@ -24,7 +24,7 @@ Note que o ponto chave é a inserção de espaços vazios, os quais vamos chamar
 
 Agora que entendemos o conceito de alinhamento, podemos voltar ao algoritmo em si. Sua principal aplicação provêm do ramo biológico, sendo responsável pelo alinhamento de nucleotídeos (coincidentemente representados pelas mesmas letras dos exercícios anteriores). Existem duas formas de fazê-lo, globalmente e localmente:
 
- ![](Capture.PNG)
+ ![](Capture.png)
 
 Como é possível observar na imagem anterior, o alinhamento global é responsável por encontrar similaridade ao longo de toda sua extensão, além de manter as regiões onde o alinhamento não é possível através da inserção de gaps, ou seja, as entradas não precisam ter o mesmo tamanho, mas as saídas sim. Já o alinhamento local é feito através de pequenas regiões, desprezando áreas onde não é possível alinhar, e portanto, não preservando o tamanho original das sequências.
 
@@ -61,7 +61,7 @@ Para determinar o melhor alinhamento possível é utilizado uma matriz, a qual v
 
 Para determinarmos o melhor alimento de duas sequências, inicializamos a matris colocando uma sequência na primeira linha e a aoutra na primeira coluna,como mostra a imagem abaixo para as sequências mostradas anteriorment (ATA & TAC): 
 
-![](matriz_inicial.PNG)
+![](matriz_inicial.png)
 
 O ponto mais importante para você entender como que funciona o preenchimento dessa matriz é que cada célula representa uma versão menor do problema. Um pouco confuso não é? Vamos olhar so para as primeiras duas linhas:
 
