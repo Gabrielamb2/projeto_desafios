@@ -42,9 +42,9 @@ Para determinar quanto o alinhamento é bom, é utilizado um sistema de pontuaç
 
 São três as possibilidades:
 
-* Gap: utilizado para inserir lacunas nas sequências, de forma a estendê-las criando espaços vazios. Minimizar as lacunas é importante para criar um alinhamento útil, desta forma o Gap possui uma penalidade maior. ([penalidade de lacuna](https://pt.wikipedia.org/wiki/Penalidade_para_lacunas)). Gaps são contados quando não andamos na diagonal, ou seja, não damos passos em direção ao sumidouro, mas sim estamos "estendendo" o caminho... capiche?
+* Gap: utilizado para inserir lacunas nas sequências, de forma a estendê-las criando espaços vazios. Minimizar as lacunas é importante para criar um alinhamento útil, desta forma o Gap possui uma penalidade maior. ([penalidade de lacuna](https://pt.wikipedia.org/wiki/Penalidade_para_lacunas)).
 
-* Missmatch: corresponde aos nucleotídeos que estão desalinhados. Possui pontuação negativa porque queremos alinhar a sequência e não deslinhá-la. É contado especialmente quando damos passos na diagnonal, mas a letras (nucleotídeos) não são iguais.
+* Missmatch: corresponde aos nucleotídeos que estão desalinhados. Possui pontuação negativa porque queremos alinhar a sequência e não desalinhá-la. É contado especialmente quando damos passos na diagnonal, mas a letras (nucleotídeos) não são iguais.
 
 
 * Match: correspode aos nucleotídeos que estão alinhados. É contado quando damos passos na diagonal e as letras são iguais.
@@ -59,9 +59,13 @@ Para determinar o melhor alinhamento possível é utilizado uma matriz, a qual v
 
 1. Inicialização da Matriz 
 
-Para determinarmos o melhor alimento de duas sequências, inicializamos a matris colocando uma sequência na primeira linha e a aoutra na primeira coluna,como mostra a imagem abaixo para as sequências mostradas anteriorment (ATA & TACA): 
+Para determinarmos o melhor alinhamento de duas sequências, inicializamos a matriz colocando uma sequência na primeira linha e a outra na primeira coluna, como mostra na imagem abaixo para as sequências:
+* ATA 
+* TACA 
 
 ![](matriz_inicial.png)
+
+COLOCAR FONTE E SUMIDOURO
 
 O ponto mais importante para você entender como que funciona o preenchimento dessa matriz é que cada célula representa uma versão menor do problema. Um pouco confuso não é? Vamos olhar so para as primeiras duas linhas:
 
@@ -73,17 +77,21 @@ Lembrando que cada célula representa uma versão menor do problema e que cada c
 
 ![](matriz_inicial_linha_celula1.png)
 
-Essa célula é responsável pelo score da letra A com algo vazio, assim a unica forma de alinhar é com um Gap. 
-Agora vamos olhar a próxima célula: 
+Essa célula é responsável pelo score da letra A com algo vazio, assim a unica forma de alinhar é com um Gap.
+
+Os Gaps são contados quando não andamos na diagonal, ou seja, não damos passos em direção ao sumidouro, mas sim estamos "estendendo" o caminho... capiche?
+
+Já para preencher a próxima celula, iremos levar em consideração a que acabamos de preencher...
+
 
 ![](matriz_inicial_linha_celula2.png)
 
-Como vamos alinhar AT com algo vazio, sendo que A esta alinhado com um Gap, T também sera alinhado com um Gap. 
+Como vamos alinhar AT com algo vazio, também será necessario colocar um Gap em T, resultando assim em um score de -4 (-2 + -2)
 Agora vamos olhar a próxima célula: 
 
 ![](matriz_inicial_linha_celula3.png)
 
-Analogamente como explicado anteriormente, teremos que alinhar ATA com algo vazio, sendo que A e T está alinhado com um Gap, o outro A também será alinhado com um Gap, obtendo assim a primeira linha: 
+Analogamente como explicado anteriormente, teremos que alinhar ATA com algo vazio, assim adicionando outro Gap para alinhar com o A,obtendo assim a primeira linha: 
 
 ![](matriz_inicial_linha_completa.png)
 
@@ -95,16 +103,19 @@ Ou seja, apartir dessa linha podemos concluir que:
 É possível observar que o alinhamento A (1) é uma versão menor do problema de alinhamento AT(2), e AT(2) é uma versão menor do problema de alinhamento ATA. 
 
 ??? Checkpoint 4
-Como fizemos anteriormente, precisamos preencher agora a primeira coluna da matriz. Agora é com você :)
+Como fizemos anteriormente, precisamos preencher agora a primeira coluna da matriz. 
+Agora é com você :)
 
 ::: Gabarito
 ;Coluna
 
-Ou seja, apartir dessa coluna podemos concluir que:
-1. o score de alinhamento de T com algo vazio é -2,pois é um Gap;
-2. o score de alinhamento de TA com algo vazio é -4,pois tambem é um Gap;
-3. o score de alinhamento de TAC com algo vazio é -6,pois tambem é um Gap.
-4. o score de alinhamento de TACA com algo vazio é -8,pois tambem é um Gap.
+ARRUMAR ULTIMA FOTO
+
+Ou seja, apartir dessa coluna podemos concluir que todos os nucleotideos foram alinhados com Gaps, obtendo assim:
+1. o score de alinhamento de T com algo vazio é -2,
+2. o score de alinhamento de TA com algo vazio é -4,
+3. o score de alinhamento de TAC com algo vazio é -6,
+4. o score de alinhamento de TACA com algo vazio é -8.
 
 :::
 ???
@@ -130,6 +141,8 @@ Será o alinhamento da sequência A com T.
 ???
 
 Bom, para determinarmos o valor dessa células temos 3 opções, porém precisamos determinar a que nos trará o melhor alinhamento. Assim, vamos analisar as opções:
+
+COLOCAR IMAGENS 
 
 1. Vir por cima e fazer um Gap na sequencia da horizontal, assim teriamos um score de -4 
     * gap
@@ -160,6 +173,8 @@ Agora é com você, preencha as outras células da matriz:
 ::: Gabarito
 
 ![](matriz_inteira4.png)
+
+colocar setas
 
 :::
 ???
