@@ -33,7 +33,7 @@ O Neefleman-Wunsch utiliza o alinhamento global, e é  implementado segundo um c
 Score
 ---------
 
-Para determinr quanto o alinhamento é bom, é utilizado um sistema de pontuação:
+Para determinar quanto o alinhamento é bom, é utilizado um sistema de pontuação:
 
 
 |    Gap   | Missmatch | Match |
