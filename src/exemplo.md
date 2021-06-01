@@ -65,7 +65,7 @@ Para determinarmos o melhor alimento de duas sequências, inicializamos a matris
 ![](matriz_inicial.png)
 
 
-O ponto mais importante para você entender como que funciona o preenchimento dessa matriz é que cada célula representa uma versão menor do problema. Um pouco confuso não é? mas a ideia é sair da fonte e chegar ao sumidouro.Vamos olhar so para as primeiras duas linhas:
+O ponto mais importante para você entender como que funciona o preenchimento dessa matriz é que cada célula representa uma versão menor do problema. Um pouco confuso não é? mas a ideia é sair da fonte e chegar ao sumidouro, com o melhor score possível. Vamos olhar so para as primeiras duas linhas:
 
 
 ![](matriz_inicial_linha.png)
@@ -164,7 +164,7 @@ Agora é com você, preencha as outras células da matriz:
 
 ::: Gabarito
 
-![](matriz_inteira4.png)
+![](matriz_solucao.png)
 
 As setas vermelhas indicam gap.
 
@@ -218,30 +218,36 @@ Sendo que n e m são os respectivos tamanhos das sequências 1 e 2. Podemos afir
 Desafio
 ---------
 
-Agora que você entendeu como encontrar o melhor score possível para o alinhamento de duas sequências, precisamos entender como usar esse score para inserir os gaps e alinhá-las. Esse processo é chamado de Tracback.
+Agora que você entendeu como encontrar o melhor score possível para o alinhamento de duas sequências, precisamos entender como usar esse score para inserir os gaps e alinhá-las. Esse processo é chamado de Traceback.
 
-Como você faria o caminho ao contrário, ou seja, do sumidouro para a fonte? Desenhe setas apontando para cada direção escolhida. 
+A ideia principal é fazer o caminho inverso, ou seja, sair do sumidouro e voltar para a fonte a partir das setas já desenhadas (note que existe apenas um caminho possível que sai do sumidouro e chega até a fonte).
+
+Vamos ver um exemplo. Considere a matriz preenchida nos checkpoints anteriores:
+
+![](matriz_solucao.png)
+
+Partindo do sumidouro temos o seguinte caso:
+
+![](matriz_finalizada_sumidouro.png)
+
+Repare que nesse caso, o caminho seria voltando pela diagonal, pois os nucleotídeos A e A coincidem. O resultado seria:
+
+![](matriz_finalizada_sumidouro_resolucao.png)
+
+??? Checkpoint 7
+Seguindo a mesma lógica, complete o caminho, lembre-se de partir do sumidouro e chegar até a fonte. Desenhe setas no caminho percorrido, como demostrado acima.
 
 ::: Gabarito
-![](matriz-5.PNG)
+![](matriz_finalizada_solucao.PNG)
 
-Talvez tenha ficado um pouco confuso, não é mesmo? Pois é, vamos explicar. 
-
-Este processo é conhecido como traceback, onde precisamos definir o melhor alinhamento, ou seja, qual é o melhor caminho da fonte até o sumidouro, da mesma forma que fizemos para o problema do turista de Manhattan. 
-
-As regras são as seguintes:
-
-* Andar na diagonal signifca manter a posição atual
-dos nucleotídeos, portanto fazemos isso quando eles já estão alinhados.
-
-* Caso não estejam alinhados, precisamos procurar a melhor opção entre os nós que sobraram. Note que andar para os lados, signfica estender a sequência das colunas, já andar para cima/baixo significa estender a sequência das linhas.
-
-Com as regras acima e o caminho escolhido da imagem, podemos determinar o alinhamento ótimo das sequências:
+Veja abaixo uma animação da resolução completa:
 
 ;alinhamento
 :::
 
 ??? 
+
+
 
 
 
