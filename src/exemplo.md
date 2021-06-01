@@ -230,7 +230,7 @@ Partindo do sumidouro temos o seguinte caso:
 
 ![](matriz_finalizada_sumidouro.png)
 
-Repare que nesse caso, o caminho seria voltando pela diagonal, pois os nucleotídeos A e A coincidem. O resultado seria:
+Repare que nesse caso, o caminho seria voltando pela diagonal, pois a unica seta que chega no sumidouro vem da diagonal. Desta forma o resultado seria:
 
 ![](matriz_finalizada_sumidouro_resolucao.png)
 
