@@ -144,15 +144,15 @@ Será o alinhamento da sequência A com T.
 
 Bom, para determinarmos o valor dessa células temos 3 opções, porém precisamos determinar a que nos trará o melhor alinhamento. Assim, vamos analisar as opções:
 
-1. Vir por cima e fazer um Gap na sequencia da horizontal, assim teríamos um score de -4 
+1. Alinhar o A com um Gap, oque seria equivalente a vir por cima na matriz e fazer um Gap na sequencia da horizontal, obtendo assim um score de -4:
 
 ![](possibilidade1.png)
 
-2. Vir pela esquerda e fazer um Gap na sequencia da vertical, assim teríamos um score de -4
+2. Alinhar o T com um Gap,oque seria equivalente a vir pela esquerda na matriz e fazer um Gap na sequencia da vertical, obtendo assim um score de -4:
 
 ![](possibilidade2.png)
 
-3. Vir pela diagonal e ter um MissMatch, assim teríamos um score de -1
+3. E a ultima opção é alinhar A com T, oque seria equivalente a vir pela diagonal da matriz e ter um MissMatch, assim teriamos um score de -1:
 
 ![](possibilidade3.png)
 
@@ -179,7 +179,6 @@ As setas vermelhas indicam gap.
 As setas laranjas indicam missmatch,é especialmente quando damos passos na diagonal, mas a letras (nucleotídeos) não são iguais.
 
 E as setas verdes indicam match, é quando damos passos na diagonal e as letras são iguais.
-
 
 :::
 ???
