@@ -29,7 +29,7 @@ O Neefleman-Wunsch utiliza o alinhamento global, e é  implementado segundo um c
 Score
 ---------
 
-Para determinr quanto o alinhamento é bom, é utilizado um sistema de pontuação:
+Para determinar quanto o alinhamento é bom, é utilizado um sistema de pontuação:
 
 
 |    Gap   | Missmatch | Match |
@@ -44,24 +44,24 @@ São três as possibilidades:
 
 
 
-* Match: correspode aos nucleotídeos que estão alinhados. 
+* Match: corresponde aos nucleotídeos que estão alinhados. 
 
 
 Algoritmo 
 ---------
 
-Conhecendo agora o sistema de pontos, como podemos encontrar o alinhamento com o melhor score possivel? Ou seja, o melhor alinhamento possível?
+Conhecendo agora o sistema de pontos, como podemos encontrar o alinhamento com o melhor score possível? Ou seja, o melhor alinhamento possível?
 
 Para determinar o melhor alinhamento possível é utilizado uma matriz, a qual vamos explicar seu funcionamento nos próximos passos: 
 
 1. Inicialização da Matriz 
 
-Para determinarmos o melhor alimento de duas sequências, inicializamos a matris colocando uma sequência na primeira linha e a aoutra na primeira coluna,como mostra a imagem abaixo para as sequências mostradas anteriorment (ATA & TACA): 
+Para determinarmos o melhor alimento de duas sequências, inicializamos a matriz colocando uma sequência na primeira linha e a outra na primeira coluna, como mostra a imagem abaixo para as sequências mostradas anteriormente (ATA & TACA): 
 
 ![](matriz_inicial.png)
 
 
-O ponto mais importante para você entender como que funciona o preenchimento dessa matriz é que cada célula representa uma versão menor do problema. Vamos observar a celula destacada a seguir:
+O ponto mais importante para você entender como que funciona o preenchimento dessa matriz é que cada célula representa uma versão menor do problema. Vamos observar a célula destacada a seguir:
 
 ![](matriz1_destacada.png)
 
@@ -76,7 +76,7 @@ Lembrando que cada célula representa uma versão menor do problema e que cada c
 
 ![](matriz_inicial_linha_celula1.png)
 
-Essa célula é responsável pelo score da letra A com algo vazio, assim a unica forma de alinhar é com um Gap:
+Essa célula é responsável pelo score da letra A com algo vazio, assim a única forma de alinhar é com um Gap:
 
 ![](explicacao1.png) 
 
@@ -98,7 +98,7 @@ Analogamente como explicado anteriormente, teremos que alinhar ATA com algo vazi
 
 ![](explicacao3.png) 
 
-Ou seja, apartir dessa linha podemos concluir que:
+Ou seja, a partir dessa linha podemos concluir que:
 1. o score de alinhamento de A com algo vazio é -2,
 2. o score de alinhamento de AT com algo vazio é -4,
 3. o score de alinhamento de ATA com algo vazio é -6,
@@ -112,7 +112,7 @@ Como fizemos anteriormente, precisamos preencher agora a primeira coluna da matr
 ;Coluna
 
 
-Ou seja, apartir dessa coluna podemos concluir que todos os nucleotideos foram alinhados com Gaps, obtendo assim:
+Ou seja, a partir dessa coluna podemos concluir que todos os nucleotídeos foram alinhados com Gaps, obtendo assim:
 1. o score de alinhamento de T com algo vazio é -2,
 2. o score de alinhamento de TA com algo vazio é -4,
 3. o score de alinhamento de TAC com algo vazio é -6,
@@ -122,7 +122,7 @@ Ou seja, apartir dessa coluna podemos concluir que todos os nucleotideos foram a
 :::
 ???
 
-Bom, acho que deu pra ter uma noção, mas vamos fazer agora uma célula um pouco mais dificil :)
+Bom, acho que deu pra ter uma noção, mas vamos fazer agora uma célula um pouco mais difícil :)
 
 2. Preenchendo as outras células da matriz:
 
@@ -144,15 +144,15 @@ Será o alinhamento da sequência A com T.
 
 Bom, para determinarmos o valor dessa células temos 3 opções, porém precisamos determinar a que nos trará o melhor alinhamento. Assim, vamos analisar as opções:
 
-1. Vir por cima e fazer um Gap na sequencia da horizontal, assim teriamos um score de -4 
+1. Vir por cima e fazer um Gap na sequencia da horizontal, assim teríamos um score de -4 
 
 ![](possibilidade1.png)
 
-2. Vir pela esquerda e fazer um Gap na sequencia da vertical, assim teriamos um score de -4
+2. Vir pela esquerda e fazer um Gap na sequencia da vertical, assim teríamos um score de -4
 
 ![](possibilidade2.png)
 
-3. Vir pela diagonal e ter um MissMatch, assim teriamos um score de -1
+3. Vir pela diagonal e ter um MissMatch, assim teríamos um score de -1
 
 ![](possibilidade3.png)
 
@@ -176,7 +176,7 @@ Agora é com você, preencha as outras células da matriz:
 
 As setas vermelhas indicam gap.
 
-As setas laranjas indicam missmatch,é especialmente quando damos passos na diagnonal, mas a letras (nucleotídeos) não são iguais.
+As setas laranjas indicam missmatch,é especialmente quando damos passos na diagonal, mas a letras (nucleotídeos) não são iguais.
 
 E as setas verdes indicam match, é quando damos passos na diagonal e as letras são iguais.
 
@@ -238,7 +238,7 @@ Partindo do sumidouro temos o seguinte caso:
 
 ![](matriz_finalizada_sumidouro.png)
 
-Repare que nesse caso, o caminho seria voltando pela diagonal, pois a unica seta que chega no sumidouro vem da diagonal. Desta forma o resultado seria:
+Repare que nesse caso, o caminho seria voltando pela diagonal, pois a única seta que chega no sumidouro vem da diagonal. Desta forma o resultado seria:
 
 ![](matriz_finalizada_sumidouro_resolucao.png)
 
