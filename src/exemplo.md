@@ -61,7 +61,11 @@ Para determinarmos o melhor alimento de duas sequências, inicializamos a matris
 ![](matriz_inicial.png)
 
 
-O ponto mais importante para você entender como que funciona o preenchimento dessa matriz é que cada célula representa uma versão menor do problema. Um pouco confuso não é? mas a ideia é sair da fonte e chegar ao sumidouro, com o melhor score possível. Vamos olhar so para as primeiras duas linhas:
+O ponto mais importante para você entender como que funciona o preenchimento dessa matriz é que cada célula representa uma versão menor do problema. Vamos observar a celula destacada a seguir:
+
+![](matriz1_destacada.png)
+
+Ao observar essa célula é importante ressaltar que ela corresponde ao alinhamento de A com T. Já a de baixo, é referente ao alinhamento de A com TT, e assim por diante. Um pouco confuso não é? mas a ideia é sair da célula inicial e chegar a final, com o melhor score possível. Vamos olhar so para as primeiras duas linhas:
 
 
 ![](matriz_inicial_linha.png)
@@ -72,12 +76,18 @@ Lembrando que cada célula representa uma versão menor do problema e que cada c
 
 ![](matriz_inicial_linha_celula1.png)
 
-Essa célula é responsável pelo score da letra A com algo vazio, assim a unica forma de alinhar é com um Gap. 
+Essa célula é responsável pelo score da letra A com algo vazio, assim a unica forma de alinhar é com um Gap:
+
+![](explicacao1.png) 
+
 Agora vamos olhar a próxima célula: 
 
 ![](matriz_inicial_linha_celula2.png)
 
-Como vamos alinhar AT com algo vazio, sendo que A esta alinhado com um Gap, T também sera alinhado com um Gap. 
+Como vamos alinhar AT com algo vazio, sendo que A esta alinhado com um Gap, T também sera alinhado com um Gap.
+
+![](explicacao2.png) 
+
 Agora vamos olhar a próxima célula: 
 
 ![](matriz_inicial_linha_celula3.png)
@@ -85,6 +95,8 @@ Agora vamos olhar a próxima célula:
 Analogamente como explicado anteriormente, teremos que alinhar ATA com algo vazio, sendo que A e T está alinhado com um Gap, o outro A também será alinhado com um Gap, obtendo assim a primeira linha: 
 
 ![](matriz_inicial_linha_completa.png)
+
+![](explicacao3.png) 
 
 Ou seja, apartir dessa linha podemos concluir que:
 1. o score de alinhamento de A com algo vazio é -2,
@@ -216,7 +228,7 @@ Desafio
 
 Agora que você entendeu como encontrar o melhor score possível para o alinhamento de duas sequências, precisamos entender como usar esse score para inserir os gaps e alinhá-las. Esse processo é chamado de Traceback.
 
-A ideia principal é fazer o caminho inverso, ou seja, sair do sumidouro e voltar para a fonte a partir das setas já desenhadas (note que existe apenas um caminho possível que sai do sumidouro e chega até a fonte).
+A ideia principal é fazer o caminho inverso, ou seja, sair da ultima célula e voltar para a primeira a partir das setas já desenhadas (note que existe apenas um caminho possível que sai do ultimo e chega no primeiro).
 
 Vamos ver um exemplo. Considere a matriz preenchida nos checkpoints anteriores:
 
@@ -231,7 +243,7 @@ Repare que nesse caso, o caminho seria voltando pela diagonal, pois a unica seta
 ![](matriz_finalizada_sumidouro_resolucao.png)
 
 ??? Checkpoint 7
-Seguindo a mesma lógica, complete o caminho, lembre-se de partir do sumidouro e chegar até a fonte. Desenhe setas no caminho percorrido, como demostrado acima.
+Seguindo a mesma lógica, complete o caminho, lembre-se de partir da ultima célula chegar até a primeira. Desenhe setas no caminho percorrido, como demostrado acima.
 
 ::: Gabarito
 ![](matriz_finalizada_solucao.PNG)
