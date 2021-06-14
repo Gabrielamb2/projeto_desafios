@@ -24,7 +24,7 @@ Note que o ponto chave é a inserção de espaços vazios, os quais vamos chamar
 
 Agora que entendemos o conceito de alinhamento, podemos voltar ao algoritmo em si. Sua principal aplicação provêm do ramo biológico, sendo responsável pelo alinhamento de nucleotídeos (coincidentemente representados pelas mesmas letras dos exercícios anteriores). Existem duas formas de fazê-lo, globalmente e localmente:
 
- ![](Capture.png)
+ ![](capture.png)
 
 Como é possível observar na imagem anterior, o alinhamento global é responsável por encontrar similaridade ao longo de toda sua extensão, além de manter as regiões onde o alinhamento não é possível através da inserção de gaps, ou seja, as entradas não precisam ter o mesmo tamanho, mas as saídas sim. Já o alinhamento local é feito através de pequenas regiões, desprezando áreas onde não é possível alinhar, e portanto, não preservando o tamanho original das sequências.
 
