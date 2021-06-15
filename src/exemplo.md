@@ -38,7 +38,7 @@ Para determinar quanto o alinhamento é bom, é utilizado um sistema de pontuaç
 
 São três as possibilidades:
 
-* Gap: utilizado para inserir lacunas nas sequências, de forma a estendê-las criando espaços vazios. Minimizar as lacunas é importante para criar um alinhamento útil, desta forma o Gap possui uma penalidade maior. ([penalidade de lacuna](https://pt.wikipedia.org/wiki/Penalidade_para_lacunas)). Gaps são contados quando não andamos na diagonal, ou seja, não damos passos em direção ao sumidouro, mas sim estamos "estendendo" o caminho... capiche?
+* Gap: utilizado para inserir lacunas nas sequências, de forma a estendê-las criando espaços vazios. Minimizar as lacunas é importante para criar um alinhamento útil, desta forma o Gap possui uma penalidade maior. ([penalidade de lacuna](https://pt.wikipedia.org/wiki/Penalidade_para_lacunas)). 
 
 * Missmatch: corresponde aos nucleotídeos que estão desalinhados. Possui pontuação negativa porque queremos alinhar a sequência e não desalinhá-la. 
 
