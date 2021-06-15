@@ -16,7 +16,7 @@ Imagine que temos duas sequências de chars:
 
 Alinhar essas sequências significa, basicamente, obter duas outras sequências, s3 e s4, de mesmo tamanho, de forma que possuam todos os caracteres originais das sequências s1 e s2, respectivamente. Além disso, os caracteres devem estar na mesma ordem da sequência original, porém não necessariamente juntos. Podemos resumir na seguinte imagem:
 
-![](alinhamento_ex1.png)
+![](alinhamento_ex1.PNG)
 
 Note que o ponto chave é a inserção de espaços vazios, os quais vamos chamar de gaps. Inserí-los torna possível modificar parcialmente as sequências originais, de forma a combinar seus caracteres. A cereja do bolo é que esse conceito também funciona para sequências que não são do mesmo tamanho, como nos exemplos logo abaixo:
 
@@ -58,7 +58,7 @@ Para determinar o melhor alinhamento possível é utilizado uma matriz, a qual v
 
 Para determinarmos o melhor alimento de duas sequências, inicializamos a matriz colocando uma sequência na primeira linha e a outra na primeira coluna, como mostra a imagem abaixo para as sequências mostradas anteriormente (ATA & TACA): 
 
-![](matriz_inicial.png)
+![](matriz_inicial.PNG)
 
 
 O ponto mais importante para você entender como que funciona o preenchimento dessa matriz é que cada célula representa uma versão menor do problema. Vamos observar a célula destacada a seguir:
@@ -146,15 +146,15 @@ Bom, para determinarmos o valor dessa células temos 3 opções, porém precisam
 
 1. Alinhar o A com um Gap, oque seria equivalente a vir pela esquerda na matriz e fazer um Gap na sequencia da vertical, obtendo assim um score de -4:
 
-![](possibilidade1.png)
+![](possibilidade1.PNG)
 
 2. Alinhar o T com um Gap,oque seria equivalente a vir por cima na matriz e fazer um Gap na sequencia da horizontal, obtendo assim um score de -4:
 
-![](possibilidade2.png)
+![](possibilidade2.PNG)
 
 3. E a ultima opção é alinhar A com T, oque seria equivalente a vir pela diagonal da matriz e ter um MissMatch, assim teriamos um score de -1:
 
-![](possibilidade3.png)
+![](possibilidade3.PNG)
 
 Desta forma, para termos o maior score possível é utilizar a opção 3:
 
@@ -235,11 +235,11 @@ Vamos ver um exemplo. Considere a matriz preenchida nos checkpoints anteriores:
 
 Partindo do sumidouro temos o seguinte caso:
 
-![](matriz_finalizada_sumidouro.png)
+![](matriz_finalizada_sumidouro.PNG)
 
 Repare que nesse caso, o caminho seria voltando pela diagonal, pois a única seta que chega no sumidouro vem da diagonal. Desta forma o resultado seria:
 
-![](matriz_finalizada_sumidouro_resolucao.png)
+![](matriz_finalizada_sumidouro_resolucao.PNG)
 
 ??? Checkpoint 7
 Seguindo a mesma lógica, complete o caminho, lembre-se de partir da ultima célula chegar até a primeira. Desenhe setas no caminho percorrido, como demostrado acima.
