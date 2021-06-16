@@ -241,7 +241,7 @@ Repare que nesse caso, o caminho seria voltando pela diagonal, pois a única set
 
 ![](matriz_finalizada_sumidouro_resolucao.PNG)
 
-??? Checkpoint 7
+??? Checkpoint 9
 Seguindo a mesma lógica, complete o caminho, lembre-se de partir da ultima célula chegar até a primeira. Desenhe setas no caminho percorrido, como demostrado acima.
 
 ::: Gabarito
